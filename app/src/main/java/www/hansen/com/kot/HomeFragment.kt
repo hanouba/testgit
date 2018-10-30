@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
 
         adapter = AnotherAdapter()
                 .with(Cover::class.java,CoverBinder())
+				// home 添加的
 
     }
 }
