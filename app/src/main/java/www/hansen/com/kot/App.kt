@@ -19,5 +19,5 @@ class App : Application() {
     val picasso = Picasso.Builder(this)
             .downloader(OkHttp3Downloader(client))
             .build()
-//    Picasso.setSingletonInstance(picasso)
+    Picasso.setSingletonInstance(picasso)
 }

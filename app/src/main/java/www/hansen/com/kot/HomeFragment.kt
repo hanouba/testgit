@@ -3,6 +3,7 @@ package www.hansen.com.kot
 import android.app.Fragment
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,10 @@ class HomeFragment : Fragment() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
       homeRefresh =  view.homeRefresh
         coverList = view.homeList
+        coverList.layoutManager = GridLayoutManager(context,2)
+
+        adapter = AnotherAdapter()
+                .with(Cover::class.java,CoverBinder())
 
     }
 }
