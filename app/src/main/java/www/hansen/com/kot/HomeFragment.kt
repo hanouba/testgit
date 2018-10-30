@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import www.hansen.com.kot.adapter.AnotherAdapter
 import www.hansen.com.kot.domain.Cover
 
@@ -34,13 +35,15 @@ class HomeFragment : Fragment() {
         return inflater?.inflate(R.layout.fragment_home,container,false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        initView(view)
     }
 
-    private fun initView() {
+    private fun initView(view: View) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+      homeRefresh =  view.homeRefresh
+        coverList = view.homeList
 
     }
 }
