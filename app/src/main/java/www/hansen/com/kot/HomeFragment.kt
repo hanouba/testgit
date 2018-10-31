@@ -45,10 +45,6 @@ class HomeFragment : Fragment() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
       homeRefresh =  view.homeRefresh
         coverList = view.homeList
-        coverList.layoutManager = GridLayoutManager(context,2)
-
-        adapter = AnotherAdapter()
-                .with(Cover::class.java,CoverBinder())
 
     }
 }
