@@ -4,31 +4,42 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import www.hansen.com.kot.R.id.fab
+import www.hansen.com.kot.base.BaseActivity
 import java.net.URI
 
-class MainActivity : AppCompatActivity() {
-    companion object {
-        val GITHUT_URL = "https://github.com/wuapnjie/PoiShuhui-Kotlin"
-    }
-
-    val nameList: ArrayList<String> = arrayListOf("大一", "大二", "大三")
+class MainActivity : BaseActivity() {
+  private  val mTitles: ArrayList<String> = arrayListOf("每日精选", "发现", "热门", "我的")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        init()
-    }
-
-    private fun init() {
-        fab.setOnClickListener { jumpToMain() }
 
     }
 
-    private fun jumpToMain() {
-        val url = Uri.parse(GITHUT_URL)
-        val intent = Intent(Intent.ACTION_VIEW, url)
-        startActivity(intent)
+    override fun initData() {
+
     }
+
+    override fun initView() {
+
+    }
+
+    override fun start() {
+
+    }
+
+    override fun layoutId(): Int {
+
+        return R.layout.activity_main
+    }
+
+
+
+
+
+
+
+
 }

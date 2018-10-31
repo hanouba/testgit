@@ -10,7 +10,7 @@ import www.hansen.com.kot.kids.TypeNotBindException
  * 版权所有  WELLTRANS.
  * 说明
  */
-class AnotherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class AnotherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var inflate : LayoutInflater? = null
     val items = ArrayList<Any>();
     val types = arrayListOf<Class<*>>()
@@ -33,7 +33,7 @@ class AnotherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         holder?.let {
             val type = getItemViewType(position)
@@ -51,7 +51,7 @@ class AnotherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         if (parent == null) throw IllegalStateException("an adapter must attach a recycler")
         val binder = binders[viewType]
