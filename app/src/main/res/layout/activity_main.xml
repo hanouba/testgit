@@ -36,15 +36,9 @@
         app:tl_textUnselectColor="@color/color_gray"
         app:tl_textsize="10sp"
         app:tl_underline_color="#DDDDDD"
-        app:tl_underline_height="1dp"></com.flyco.tablayout.CommonTabLayout>
+        app:tl_underline_height="1dp">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/ic_github" />
+    </com.flyco.tablayout.CommonTabLayout>
+
+
 </RelativeLayout>
