@@ -2,6 +2,7 @@ package com.hansen.www.kot.ui.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.hansen.www.kot.R
 
 import com.hansen.www.kot.base.BaseFragment
 import com.hansen.www.kot.mvp.contract.HomeContract
