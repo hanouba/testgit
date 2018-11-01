@@ -12,13 +12,24 @@ import java.net.URI
 
 class MainActivity : BaseActivity() {
   private  val mTitles: ArrayList<String> = arrayListOf("每日精选", "发现", "热门", "我的")
+  private var mIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+      if (savedInstanceState != null) {
+        mIndex = savedInstanceState.getInt("currentTabIndex")
+      }
         super.onCreate(savedInstanceState)
+
+      initTab()
 
     }
 
-    override fun initData() {
+  private fun initTab() {
+
+  }
+
+
+  override fun initData() {
 
     }
 
