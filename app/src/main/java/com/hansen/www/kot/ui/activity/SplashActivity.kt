@@ -4,6 +4,9 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import com.bumptech.glide.Glide.init
 import com.hansen.www.kot.App
 import com.hansen.www.kot.R
 import com.hansen.www.kot.base.BaseActivity
@@ -22,6 +25,10 @@ class SplashActivity : BaseActivity() {
     private var textTypeface: Typeface? = null
     //描述文字字体
     private var descTypeface: Typeface? = null
+
+    //添加动画
+    private var alhaAnimation : AlphaAnimation? = null
+
     //初始化字体
     init {
         textTypeface = Typeface.createFromAsset(App.context.assets,"fonts/Lobster-1.4.otf")
@@ -37,6 +44,26 @@ class SplashActivity : BaseActivity() {
         tv_app_desc.typeface = descTypeface
         //给控件赋值
         tv_version.text = "v${AppUtils.getVerName(App.context)}"
+
+        // 初始化动画
+        alhaAnimation = AlphaAnimation(0.3f,1.0f)
+        //设置参数
+        alhaAnimation?.duration = 2000
+        alhaAnimation?.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                toMainActivity()
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+
+            }
+
+        })
+
         checkPermissions()
     }
 
@@ -53,6 +80,20 @@ class SplashActivity : BaseActivity() {
 
     override fun start() {
 
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        if (requestCode == 0) {
+            if (perms.isNotEmpty()) {
+                if (perms.contains(Manifest.permission.READ_PHONE_STATE)
+                        && perms.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    if (alhaAnimation != null) {
+                        //启动动画
+                        iv_app_icon.startAnimation(alhaAnimation)
+                    }
+                }
+            }
+        }
     }
 
 
