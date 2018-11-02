@@ -36,7 +36,7 @@ class SplashActivity : BaseActivity() {
         tv_app_name.typeface = textTypeface
         tv_app_desc.typeface = descTypeface
         //给控件赋值
-        tv_version.text = "v"+AppUtils.getVerName(App.context)
+        tv_version.text = "v${AppUtils.getVerName(App.context)}"
         checkPermissions()
     }
 
