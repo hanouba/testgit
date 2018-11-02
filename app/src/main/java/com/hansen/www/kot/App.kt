@@ -10,8 +10,11 @@ import kotlin.properties.Delegates
  * 说明
  */
 class App : Application() {
-    var context : Context by Delegates.notNull()
-     private set
+    companion object {
+        var context: Context by Delegates.notNull()
+            private set
+    }
+
 
 
     override fun onCreate() {
