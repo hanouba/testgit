@@ -51,17 +51,17 @@ abstract class BaseFragment : Fragment(),EasyPermissions.PermissionCallbacks {
             hasLoadData = true
         }
     }
-
-    /**
-     * 懒加载
-     */
-    abstract fun lazyLoad()
-
     /**
      * 加载布局
      */
     @LayoutRes
     abstract fun getLayoutId(): Int
+    /**
+     * 懒加载
+     */
+    abstract fun lazyLoad()
+
+
 
     open val mRetryClickListener : View.OnClickListener = View.OnClickListener {
         lazyLoad()

@@ -21,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity(),EasyPermissions.PermissionCall
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(layoutId())
         initData()
         initView()
         start()
@@ -36,12 +37,12 @@ abstract class BaseActivity : AppCompatActivity(),EasyPermissions.PermissionCall
         mLayoutStatusView?.setOnClickListener(myRetroyClickListener)
     }
 
-
+    abstract fun layoutId() : Int
 
     abstract fun initData()
     abstract fun  initView()
     abstract fun start()
-    abstract fun layoutId() : Int
+
 
 
     /**
