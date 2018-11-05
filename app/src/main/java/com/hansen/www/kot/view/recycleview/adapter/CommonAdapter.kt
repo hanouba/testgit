@@ -23,7 +23,7 @@ import com.hazz.kotlinmvp.view.recyclerview.adapter.OnItemLongClickListener
  */
 abstract class CommonAdapter<T>(var mContext: Context,var mData: ArrayList<T>,private var mLayoutId: Int): RecyclerView.Adapter<
         ViewHolder>() {
-    private var mInflater: LayoutInflater? = null
+     var mInflater: LayoutInflater? = null
     private var mTypeSupport: MultipleType<T>? = null
 
     //使用接口回调点击事件

@@ -8,7 +8,9 @@ import com.hansen.www.kot.base.BaseFragment
 import com.hansen.www.kot.mvp.contract.HomeContract
 import com.hansen.www.kot.mvp.moudle.bean.HomeBean
 import com.hansen.www.kot.mvp.presenter.HomePresenter
+import com.hansen.www.kot.ui.adapter.HomeAdapter
 import com.scwang.smartrefresh.header.MaterialHeader
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -73,7 +75,19 @@ class HomeFragment : BaseFragment(),HomeContract.View{
     }
 
     override fun initView() {
+        mPresenter.attachView(this)
+        mRefreshLayout.setEnableHeaderTranslationContent(true)
+        mRefreshLayout.setOnRefreshListener{
+            isRefresh = true
+            //请求第一页数据
+            mPresenter.requestHomeData(num)
+        }
 
+        mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader?
+        //打开下拉刷新区域块背景:
+        mMaterialHeader?.setShowBezierWave(true)
+        //设置下拉刷新主题颜色
+        mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
     }
 
     override fun lazyLoad() {
