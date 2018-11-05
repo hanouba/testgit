@@ -8,6 +8,7 @@ import com.hansen.www.kot.base.BaseFragment
 import com.hansen.www.kot.mvp.contract.HomeContract
 import com.hansen.www.kot.mvp.moudle.bean.HomeBean
 import com.hansen.www.kot.mvp.presenter.HomePresenter
+import com.scwang.smartrefresh.header.MaterialHeader
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,12 +25,12 @@ class HomeFragment : BaseFragment(),HomeContract.View{
 
     private var num: Int = 1
 
-//    private var mHomeAdapter: HomeAdapter? = null
+    private var mHomeAdapter: HomeAdapter? = null
 
     private var loadingMore = false
 
     private var isRefresh = false
-//    private var mMaterialHeader: MaterialHeader? = null
+    private var mMaterialHeader: MaterialHeader? = null
 
 
     companion object {

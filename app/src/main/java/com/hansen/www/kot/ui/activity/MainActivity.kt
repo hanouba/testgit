@@ -135,7 +135,7 @@ class MainActivity : BaseActivity() {
                 finish()
             }else{
                 mTimeTag = System.currentTimeMillis()
-                Toast.makeText(App.context,"再按一次退出",Toast.LENGTH_LONG)
+                Toast.makeText(App.context,"再按一次退出",Toast.LENGTH_LONG).show()
             }
             return true
         }
