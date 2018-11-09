@@ -238,7 +238,7 @@ public class MultipleStatusView extends RelativeLayout {
     }
 
 
-    private final void showContent() {
+    public final void showContent() {
         mViewStatus = STATUS_CONTENT;
         if (null == mContentView && mContentViewResId != NULL_RESOURCE_ID) {
             mContentView = mInflater.inflate(mContentViewResId, null);
