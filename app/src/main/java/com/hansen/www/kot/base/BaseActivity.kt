@@ -54,7 +54,8 @@ abstract class BaseActivity : AppCompatActivity(),EasyPermissions.PermissionCall
      * @param grantResults 授权结果
      */
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
     /**
      * 当权限被成功申请的时候执行回调

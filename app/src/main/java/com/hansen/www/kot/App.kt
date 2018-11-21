@@ -2,6 +2,8 @@ package com.hansen.www.kot
 
 import android.app.Application
 import android.content.Context
+import com.hazz.kotlinmvp.utils.DisplayManager
+
 import kotlin.properties.Delegates
 
 /**
@@ -20,7 +22,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-
+        DisplayManager.init(this)
     }
 
 

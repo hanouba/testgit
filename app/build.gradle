@@ -67,4 +67,6 @@ dependencies {
 
     //GlideOkHttp
     implementation rootProject.ext.glide
+    //工具类
+    implementation 'com.blankj:utilcode:1.22.0'
 }

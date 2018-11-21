@@ -6,13 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import com.hansen.www.kot.R
 
 import com.hansen.www.kot.base.BaseFragment
+import com.hansen.www.kot.mvp.contract.CategoryDetailContract
 import com.hansen.www.kot.mvp.contract.HomeContract
 import com.hansen.www.kot.mvp.moudle.bean.HomeBean
 import com.hansen.www.kot.mvp.presenter.HomePresenter
-import com.hansen.www.kot.ui.adapter.BaseFragmentAdapter
-import com.hansen.www.kot.view.TabLayoutHelper
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_discover.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,7 +19,20 @@ import kotlin.collections.ArrayList
  * 版权所有  WELLTRANS.
  * 说明
  */
-class DiscoveryFragment : BaseFragment(){
+class CatagerFragment : BaseFragment(),CategoryDetailContract.View{
+    override fun showLoading() {
+    }
+
+    override fun dismissLoading() {
+    }
+
+    override fun setCateDetailList(itemList: ArrayList<HomeBean.Issue.Item>) {
+    }
+
+    override fun showError(errorMsg: String) {
+
+    }
+
     private val mTabList = ArrayList<String>()
     private val mFragments = ArrayList<Fragment>()
 
@@ -34,8 +44,8 @@ class DiscoveryFragment : BaseFragment(){
 
 
     companion object {
-        fun getInstance(title: String): DiscoveryFragment {
-            val fragment = DiscoveryFragment()
+        fun getInstance(title: String): CatagerFragment {
+            val fragment = CatagerFragment()
             val bundle = Bundle()
             fragment.arguments = bundle
             fragment.mTitle = title
@@ -44,20 +54,13 @@ class DiscoveryFragment : BaseFragment(){
     }
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_discover
+    override fun getLayoutId(): Int = R.layout.fragment_catager
 
 
 
     override fun initView() {
-        tv_header_title.setText(mTitle)
-        //设置tab名称
-        mTabList.add("关注")
-        mTabList.add("分类")
-        mFragments.add(FollowFragment.getInstance("关注"))
-        mFragments.add(CatagerFragment.getInstance("分类"))
-        mViewPager.adapter = BaseFragmentAdapter(childFragmentManager,mFragments,mTabList)
-        myTablayout.setupWithViewPager(mViewPager)
-        TabLayoutHelper.setUpIndicatorWidth(myTablayout)
+
+        
     }
 
     override fun lazyLoad() {
