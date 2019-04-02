@@ -46,7 +46,7 @@ abstract class BaseFragment : Fragment(),EasyPermissions.PermissionCallbacks {
         isViewPrepar = true
         initView()
         lazyLoadDataIfPrepared()
-        //多种状态切换的view 重试点击事件
+        //多种状态切换的view 重试点击事件 界面加载失败后的点击事件
         mLayoutStatusView?.setOnClickListener(mRetryClickListener)
     }
 
