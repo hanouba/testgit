@@ -19,13 +19,14 @@ import com.hansen.www.kot.ui.fragment.MineFragment
 import java.time.Duration
 
 class MainActivity : BaseActivity() {
+    //四个状态文字描述
     private val mTitles = arrayOf("每日精选", "发现", "热门", "我的")
     private var mIndex = 0
     //未选中的图标
     private val  mIconsUnSelectIds= intArrayOf(R.mipmap.ic_home_normal, R.mipmap.ic_discovery_normal, R.mipmap.ic_hot_normal, R.mipmap.ic_mine_normal)
     //选择的图标
     private val mIconsSelectIds = intArrayOf(R.mipmap.ic_home_selected, R.mipmap.ic_discovery_selected, R.mipmap.ic_hot_selected, R.mipmap.ic_mine_selected)
-    //标签
+    //标签 的 状态 获取 列表
     private val mTabEntities = ArrayList<CustomTabEntity>()
 
 
@@ -40,6 +41,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         initTab()
         tab_layout.currentTab = mIndex
+        //第一次打开 默认打开
         switchFragment(mIndex)
     }
 
@@ -101,7 +103,11 @@ class MainActivity : BaseActivity() {
         mMineFragment?.let { transaction.hide(it) }
     }
 
+    /**
+     * 初始化 tab
+     */
     private fun initTab() {
+        // 给CustomTabEntity 赋值
         (0 until mTitles.size).mapTo(mTabEntities) { TabEntity(mTitles[it], mIconsSelectIds[it], mIconsUnSelectIds[it]) }
         tab_layout.setTabData(mTabEntities)
         tab_layout.setOnTabSelectListener(object : OnTabSelectListener {
@@ -128,9 +134,11 @@ class MainActivity : BaseActivity() {
 
     }
 
+
     private var mTimeTag : Long = 0
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //点击时的系统时间和 上次获取 的时间 差 是否小于2秒
             if (System.currentTimeMillis().minus(mTimeTag) <= 2000) {
                 finish()
             }else{

@@ -75,6 +75,10 @@ class HomeFragment : BaseFragment(),HomeContract.View{
     override fun setHomeData(homeBean: HomeBean) {
         mLayoutStatusView?.showContent()
 
+//        let扩展函数的实际上是一个作用域函数，当你需要去定义一个变量在一个特定的作用域范围内，
+// let函数的是一个不错的选择；let函数另一个作用就是可以避免写一些判断null的操作。
+        //在函数体内使用it替代object对象去访问其公有的属性和方法
+        //表示object不为null的条件下，才会去执行let函数体
 
         // Adapter
         mHomeAdapter = activity?.let { HomeAdapter(it, homeBean.issueList[0].itemList) }

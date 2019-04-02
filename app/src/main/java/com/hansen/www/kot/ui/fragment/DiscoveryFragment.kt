@@ -2,19 +2,16 @@ package com.hansen.www.kot.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+
 import com.hansen.www.kot.R
 
 import com.hansen.www.kot.base.BaseFragment
-import com.hansen.www.kot.mvp.contract.HomeContract
-import com.hansen.www.kot.mvp.moudle.bean.HomeBean
-import com.hansen.www.kot.mvp.presenter.HomePresenter
+
 import com.hansen.www.kot.ui.adapter.BaseFragmentAdapter
 import com.hansen.www.kot.view.TabLayoutHelper
-import kotlinx.android.synthetic.main.activity_main.*
+
 import kotlinx.android.synthetic.main.fragment_discover.*
-import java.text.SimpleDateFormat
-import java.util.*
+
 import kotlin.collections.ArrayList
 
 /**

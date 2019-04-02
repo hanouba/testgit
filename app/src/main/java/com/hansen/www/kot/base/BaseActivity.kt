@@ -75,6 +75,7 @@ abstract class BaseActivity : AppCompatActivity(),EasyPermissions.PermissionCall
      */
     override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
         //处理权限名字字符串
+
         val sb = StringBuffer()
         for (str in perms) {
             sb.append(str)

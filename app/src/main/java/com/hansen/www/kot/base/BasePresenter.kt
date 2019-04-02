@@ -26,6 +26,10 @@ open class BasePresenter<T :IBaseView> :IPresenter<T> {
             compositeDisposable.clear()
         }
     }
+
+    /**
+     * 通过mRootView是否是null来判断 是否attacheed
+     */
     private val isViewAttached: Boolean
         get() = mRootView != null
 

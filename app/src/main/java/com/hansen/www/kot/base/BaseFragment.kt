@@ -23,16 +23,23 @@ abstract class BaseFragment : Fragment(),EasyPermissions.PermissionCallbacks {
     protected  var mLayoutStatusView : MultipleStatusView? = null
 
 
+    /**
+     * 加载界面
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutId(),null)
     }
 
+    /**
+     * 判断懒加载
+     */
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         if (isVisibleToUser) {
             lazyLoadDataIfPrepared()
         }
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

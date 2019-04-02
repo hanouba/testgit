@@ -19,22 +19,26 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class MultipleStatusView extends RelativeLayout {
     private static final String TAG = "MultipleStatusView";
+    //铺满
     private static final RelativeLayout.LayoutParams DEFAULT_LAYOUT_PARAMS =
             new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                     RelativeLayout.LayoutParams.MATCH_PARENT);
+    //五中状态
     public static final int STATUS_CONTENT    = 0x00;
     public static final int STATUS_LOADING    = 0x01;
     public static final int STATUS_EMPTY      = 0x02;
     public static final int STATUS_ERROR      = 0x03;
     public static final int STATUS_NO_NETWORK = 0x04;
-
+    //没有界面
     private static final int NULL_RESOURCE_ID = -1;
 
+    //五种 页面布局
     private View mEmptyView;
     private View mErrorView;
     private View mLoadingView;
     private View mNoNetworkView;
     private View mContentView;
+    //五种布局的id
     private int  mEmptyViewResId;
     private int  mErrorViewResId;
     private int  mLoadingViewResId;

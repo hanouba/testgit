@@ -1,6 +1,7 @@
 package com.hansen.www.kot.net
 
 
+import com.blankj.utilcode.util.LogUtils
 import com.hansen.www.kot.App
 import com.hansen.www.kot.api.ApiService
 import com.hansen.www.kot.api.UrlConstant
@@ -32,6 +33,8 @@ object RetrofitManager{
      * 设置公共参数
      */
     private fun addQueryParameterInterceptor(): Interceptor {
+        var mobileModel = AppUtils.getMobileModel()
+        LogUtils.vTag("mobileModel",mobileModel)
         return Interceptor { chain ->
             val originalRequest = chain.request()
             val request: Request
