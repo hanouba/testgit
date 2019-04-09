@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">kotlin001</string>
+
+    <string name="search_transition_name">transition_reveal</string>
+
+    <string name="data_error">数据获取失败(ㄒoㄒ)~~</string>
+    <string name="no_network">请检查网络后点击重新加载</string>
 </resources>
