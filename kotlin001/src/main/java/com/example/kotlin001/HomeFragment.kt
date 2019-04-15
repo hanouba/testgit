@@ -1,8 +1,11 @@
 package com.example.kotlin001
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import com.example.kotlin001.base.BaseFragment
 import com.example.kotlin001.mvp.contract.HomeContract
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  *Create by HanN on 2019/4/2
@@ -20,6 +23,17 @@ class HomeFragment : BaseFragment(),HomeContract.View{
             return fragment
         }
     }
+
+//不明白啥意思
+private val linerlayoutManager by lazy {
+    LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+}
+    // 定义日期格式吧
+    private val simpleDateFormat by lazy {
+        SimpleDateFormat("- MMM. dd, 'Brunch' -", Locale.ENGLISH)
+    }
+
+
 
 
     override fun setHomeData() {
