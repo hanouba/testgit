@@ -1,5 +1,6 @@
 package com.example.kotlin001.mvp.contract
 
+import com.example.kotlin001.base.IBasePresenter
 import com.example.kotlin001.base.IBaseView
 
 /**
@@ -14,5 +15,20 @@ interface HomeContract {
         fun setMoreData(itemList:ArrayList<String>)
         //显示错误信息
         fun  showError(msg: String , errorCode: Int)
+    }
+
+    interface Presenter : IBasePresenter<View> {
+
+        /**
+         * 获取首页精选数据
+         */
+        fun requestHomeData(num: Int)
+
+        /**
+         * 加载更多数据
+         */
+        fun loadMoreData()
+
+
     }
 }

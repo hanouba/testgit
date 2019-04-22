@@ -1,18 +1,17 @@
-package com.example.kotlin001
+package com.example.kotlin001.ui
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import android.view.KeyEvent
 import android.widget.Toast
+import com.example.kotlin001.R
 import com.example.kotlin001.base.BaseActivity
 import com.example.kotlin001.mvp.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.FieldPosition
 import kotlin.math.log
 
 class MainActivity : BaseActivity() {

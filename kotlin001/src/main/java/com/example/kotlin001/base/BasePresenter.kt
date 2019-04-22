@@ -9,7 +9,7 @@ import java.lang.RuntimeException
  * Create by HanN on 2019/4/15
  * 注释:
  */
-class BasePresenter<T : IBaseView> : IBasePresenter<T> {
+open class BasePresenter<T : IBaseView> : IBasePresenter<T> {
 
     var mRootView: T? = null
         private set       //怎么理解啊
