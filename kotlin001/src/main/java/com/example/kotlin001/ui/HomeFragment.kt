@@ -1,16 +1,24 @@
 package com.example.kotlin001.ui
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.example.kotlin001.R
 import com.example.kotlin001.base.BaseFragment
 import com.example.kotlin001.mvp.contract.HomeContract
+import com.example.kotlin001.mvp.model.HomeBean
 import com.example.kotlin001.mvp.presenter.HomePresenter
+import com.example.kotlin001.ui.activity.SearchActivity
+import com.example.kotlin001.ui.adapter.HomeAdapter
 import com.scwang.smartrefresh.header.MaterialHeader
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.logging.Logger
 
 /**
  *Create by HanN on 2019/4/2
@@ -27,6 +35,10 @@ class HomeFragment : BaseFragment(),HomeContract.View{
     private var num : Int= 1
     /*声明 加载头部对象*/
     private var mMaterialHeader : MaterialHeader? = null
+
+    private var mHomeAdapter : HomeAdapter? = null
+    private var  loadingMore = false
+
 
 
     //
@@ -50,10 +62,12 @@ private val linerlayoutManager by lazy {
     }
 
 
-
-
-    override fun setHomeData() {
-
+    /**
+     * 设置首页数据
+     */
+    override fun setHomeData(homeBean: HomeBean) {
+            mLayoutStatusView?.showContent()
+        Log.d("homeBean",""+homeBean)
     }
 
     override fun setMoreData(itemList: ArrayList<String>) {
@@ -65,11 +79,14 @@ private val linerlayoutManager by lazy {
     }
 
     override fun showLoading() {
-
+        if (!isRefresh) {
+            isRefresh = false
+            mLayoutStatusView?.showLoading()
+        }
     }
 
     override fun dismissLoading() {
-
+        mRefreshLayout.finishRefresh()
     }
 
     override fun getLayoutId(): Int {
@@ -77,7 +94,7 @@ private val linerlayoutManager by lazy {
     }
 
     override fun lazyLoad() {
-
+        mHomePresenter.requestHomeData(num)
     }
 
     override fun initView() {
@@ -98,15 +115,57 @@ private val linerlayoutManager by lazy {
 
        /*刷新监听 OnScrollListener*/
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
+                val currentVisibilityItemPosition = linerlayoutManager.findFirstVisibleItemPosition()
+                if (currentVisibilityItemPosition == 0) {
+                    //设置背景透明
+                    toolbar.setBackgroundColor(resources.getColor(R.color.color_translucent))
+                    iv_search.setImageResource(R.mipmap.ic_action_search_white)
+                    tv_header_title.text = ""
+                } else {
+                    if (mHomeAdapter?.mData!!.size > 1) {
+                        toolbar.setBackgroundColor(resources.getColor(R.color.color_title_bg))
+                        iv_search.setImageResource(R.mipmap.ic_action_search_black)
+                        val itemList = mHomeAdapter!!.mData
+                        val item = itemList[currentVisibilityItemPosition + mHomeAdapter!!.bannerItemSize - 1]
+                        if (item.type == "textHeader") {
+                            tv_header_title.text = item.data?.text
+                        }else {
+                            tv_header_title.text = simpleDateFormat.format(item.data?.date)
+                        }
+                    }
+                }
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val childCount = mRecyclerView.childCount
+                    val itemCount = mRecyclerView.layoutManager?.itemCount
+                    val firstVisibleItem = (mRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    if (firstVisibleItem + childCount == itemCount) {
+                        if (!loadingMore) {
+                            loadingMore = true
+                            mHomePresenter.loadMoreData()
+                        }
+                    }
+                }
             }
         })
 
+        iv_search.setOnClickListener{ openSearchActivity() }
+
+    }
+
+    private fun openSearchActivity() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val options = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it,iv_search,iv_search.transitionName) }
+            startActivity(Intent(activity, SearchActivity::class.java),options?.toBundle())
+        }else{
+            startActivity(Intent(activity,SearchActivity::class.java))
+        }
     }
 }

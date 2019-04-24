@@ -2,6 +2,7 @@ package com.example.kotlin001.mvp.contract
 
 import com.example.kotlin001.base.IBasePresenter
 import com.example.kotlin001.base.IBaseView
+import com.example.kotlin001.mvp.model.HomeBean
 
 /**
  *Create by HanN on 2019/4/8
@@ -10,7 +11,7 @@ import com.example.kotlin001.base.IBaseView
 interface HomeContract {
     interface View : IBaseView {
         //第一次请求数据
-        fun setHomeData()
+        fun setHomeData(homeBean: HomeBean)
         //刷新
         fun setMoreData(itemList:ArrayList<String>)
         //显示错误信息
