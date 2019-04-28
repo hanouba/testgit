@@ -4,14 +4,18 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.telephony.mbms.MbmsErrors
 import android.util.Log
+import com.blankj.utilcode.util.ToastUtils
 import com.example.kotlin001.R
 import com.example.kotlin001.base.BaseFragment
 import com.example.kotlin001.mvp.contract.HomeContract
 import com.example.kotlin001.mvp.model.HomeBean
 import com.example.kotlin001.mvp.presenter.HomePresenter
+import com.example.kotlin001.net.ErrorStatus
 import com.example.kotlin001.ui.activity.SearchActivity
 import com.example.kotlin001.ui.adapter.HomeAdapter
 import com.scwang.smartrefresh.header.MaterialHeader
@@ -68,14 +72,27 @@ private val linerlayoutManager by lazy {
     override fun setHomeData(homeBean: HomeBean) {
             mLayoutStatusView?.showContent()
         Log.d("homeBean",""+homeBean)
+
+        mHomeAdapter = activity?.let { HomeAdapter(it,homeBean.issueList[0].itemList) }
+        //设置banner大小
+        mHomeAdapter?.setBannerSize(homeBean.issueList[0].count)
+        mRecyclerView.adapter = mHomeAdapter
+        mRecyclerView.layoutManager = linerlayoutManager
+        mRecyclerView.itemAnimator = DefaultItemAnimator()
     }
 
-    override fun setMoreData(itemList: ArrayList<String>) {
-
+    override fun setMoreData(itemList: ArrayList<HomeBean.Issue.Item>) {
+        loadingMore = false
+        mHomeAdapter?.addItemData(itemList)
     }
 
     override fun showError(msg: String, errorCode: Int) {
-
+        ToastUtils.showShort(msg)
+        if (errorCode == ErrorStatus.NETWORK_ERROR) {
+            mLayoutStatusView?.showNoNetwork()
+        }else {
+            mLayoutStatusView?.showError()
+        }
     }
 
     override fun showLoading() {
@@ -167,5 +184,10 @@ private val linerlayoutManager by lazy {
         }else{
             startActivity(Intent(activity,SearchActivity::class.java))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mHomePresenter.detachView()
     }
 }

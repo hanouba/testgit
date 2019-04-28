@@ -13,7 +13,7 @@ interface HomeContract {
         //第一次请求数据
         fun setHomeData(homeBean: HomeBean)
         //刷新
-        fun setMoreData(itemList:ArrayList<String>)
+        fun setMoreData(itemList:ArrayList<HomeBean.Issue.Item>)
         //显示错误信息
         fun  showError(msg: String , errorCode: Int)
     }
