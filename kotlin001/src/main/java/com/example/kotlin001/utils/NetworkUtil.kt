@@ -146,7 +146,13 @@ class NetworkUtil{
                     .networkType == TelephonyManager.NETWORK_TYPE_UMTS
         }
 
+        fun getIMEI(context: Context): String {
+            val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            return telephonyManager.deviceId
+        }
+
     }
+
 
 
 

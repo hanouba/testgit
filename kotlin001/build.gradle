@@ -57,10 +57,14 @@ dependencies {
     //Banner
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 
+    //工具类
     implementation 'com.blankj:utilcode:1.23.7'
 
     //Logger
     implementation 'com.orhanobut:logger:2.2.0'
+
+    //adapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 
 
 }

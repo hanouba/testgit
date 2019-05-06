@@ -1,10 +1,11 @@
 package com.example.kotlin001.api
 
 import com.example.kotlin001.mvp.model.HomeBean
+import com.example.kotlin001.mvp.model.LoginBean
+import com.example.kotlin001.mvp.model.TestBean
+import com.example.kotlin001.mvp.model.VideListBean
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.Url
+import retrofit2.http.*
 
 /**
  *Create by HanN on 2019/4/24
@@ -28,5 +29,10 @@ interface ApiService {
      */
     @GET("v4/video/related?")
     fun getRelatedData(@Query("id") id: Long): Observable<HomeBean.Issue>
-
+    /*登录*/
+    @POST("user/login?")
+    fun login(@Query("username")name: String,@Query("password")pwd: String,@Query("mac")mac: String):Observable<LoginBean>
+    /*获取资源树*/
+    @POST("resource/listPage?")
+    fun getVideoTree(@Query("pageNumber")pageNumber: String,@Query("pageSize")pageSize: String,@Query("")name: String):Observable<TestBean>
 }

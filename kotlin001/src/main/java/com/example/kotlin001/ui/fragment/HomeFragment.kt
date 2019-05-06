@@ -1,4 +1,4 @@
-package com.example.kotlin001.ui
+package com.example.kotlin001.ui.fragment
 
 import android.content.Intent
 import android.os.Build
@@ -7,7 +7,6 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.telephony.mbms.MbmsErrors
 import android.util.Log
 import com.blankj.utilcode.util.ToastUtils
 import com.example.kotlin001.R
@@ -22,7 +21,6 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.logging.Logger
 
 /**
  *Create by HanN on 2019/4/2

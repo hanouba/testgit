@@ -22,7 +22,7 @@ object RetrofitManager {
         getRetrofit().create(ApiService::class.java)
     }
 
-    private var token:String by Preference("token","")
+    private var token:String by Preference("token",UrlConstant.TOKEN)
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -45,14 +45,14 @@ object RetrofitManager {
         val cache = Cache(cacheFile,1024 * 1024 * 50 )//缓存大小50m
 
         return OkHttpClient.Builder()
-                .addInterceptor(addQueryParameterInterceptor())
+//                .addInterceptor(addQueryParameterInterceptor())
                 .addInterceptor(addHeaderInterceptor()) //token过滤
-//              .addInterceptor(addCacheInterceptor())
+              .addInterceptor(addCacheInterceptor())
                 .addInterceptor(httpLoggingInterceptor)
                 .cache(cache)
-                .connectTimeout(60L,TimeUnit.SECONDS)
-                .readTimeout(60L,TimeUnit.SECONDS)
-                .writeTimeout(60L,TimeUnit.SECONDS)
+                .connectTimeout(10L,TimeUnit.SECONDS)
+                .readTimeout(10L,TimeUnit.SECONDS)
+                .writeTimeout(10L,TimeUnit.SECONDS)
                 .build()
 
 
@@ -82,7 +82,7 @@ object RetrofitManager {
         return  Interceptor { chain ->
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder()
-                    .header("token",token)
+                    .header("Authorization",UrlConstant.TOKEN)
                     .method(originalRequest.method(),originalRequest.body())
             val request = requestBuilder.build()
             chain.proceed(request)

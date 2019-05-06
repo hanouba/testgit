@@ -9,6 +9,8 @@ import android.widget.Toast
 import com.example.kotlin001.R
 import com.example.kotlin001.base.BaseActivity
 import com.example.kotlin001.mvp.TabEntity
+import com.example.kotlin001.ui.fragment.HomeFragment
+import com.example.kotlin001.ui.fragment.VideoListFragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,6 +26,7 @@ class MainActivity : BaseActivity() {
     //将标签状态存储
     private val mTabEntities = ArrayList<CustomTabEntity>()
     private var mHomeFragment: HomeFragment? = null;
+    private var mVideoListFragment: VideoListFragment? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,10 +54,10 @@ class MainActivity : BaseActivity() {
                 beginTransaction.add(R.id.fl_container, it, "home")  // 将homefragment显示在fragment上
             }
             1 //发现
-            -> mHomeFragment?.let {
+            -> mVideoListFragment?.let {
                 beginTransaction.show(it)
-            } ?: HomeFragment.getInstance(mTitles[position]).let {
-                mHomeFragment = it
+            } ?: VideoListFragment.getInstance(mTitles[position]).let {
+                mVideoListFragment = it
                 beginTransaction.add(R.id.fl_container, it, "discover")
             }
             2 //热门
