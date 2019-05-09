@@ -13,12 +13,12 @@ import com.example.kotlin001.ui.MainActivity
 import com.example.kotlin001.utils.NetworkUtil
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : BaseActivity() ,LoginContract.View{
+class LoginActivity : BaseActivity(), LoginContract.View {
     override fun toMainActivity() {
-        startActivity(Intent(this,MainActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
-    private val mLoginPresenter by lazy {LoginPresenter()}
+    private val mLoginPresenter by lazy { LoginPresenter() }
 
 
     override fun showLoading() {
@@ -26,7 +26,7 @@ class LoginActivity : BaseActivity() ,LoginContract.View{
     }
 
     override fun dismissLoading() {
-    ToastUtils.showShort("停止显示loading")
+        ToastUtils.showShort("停止显示loading")
     }
 
 
@@ -37,7 +37,7 @@ class LoginActivity : BaseActivity() ,LoginContract.View{
     override fun initView() {
         mLoginPresenter.attachView(this)
         bt_login.setOnClickListener {
-            mLoginPresenter.login(et_name.text.toString(),et_pwd.text.toString(),DeviceUtils.getAndroidID())
+            mLoginPresenter.login(et_name.text.toString(), et_pwd.text.toString(), DeviceUtils.getAndroidID())
         }
     }
 
@@ -51,7 +51,7 @@ class LoginActivity : BaseActivity() ,LoginContract.View{
     }
 
     override fun getLayoutId(): Int {
-       return R.layout.activity_login
+        return R.layout.activity_login
     }
 
 

@@ -29,10 +29,11 @@ class MainActivity : BaseActivity() {
     private var mVideoListFragment: VideoListFragment? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
         if (savedInstanceState != null) {
             mIndex = savedInstanceState.getInt("currTabIndex")
         }
+        super.onCreate(savedInstanceState)
         initTab()
         tab_layout.currentTab = mIndex
         //切换fragment
@@ -43,7 +44,7 @@ class MainActivity : BaseActivity() {
         //为啥是val
         val beginTransaction = supportFragmentManager.beginTransaction()
         hindfragmnet(beginTransaction)
-
+        Log.d("inittab", "switchFragment"+position)
         when (position) {
             0     // postion是0
             -> mHomeFragment?.let {
@@ -88,6 +89,8 @@ class MainActivity : BaseActivity() {
 
     private fun hindfragmnet(transaction: FragmentTransaction) {
         mHomeFragment?.let { transaction.hide(it) }
+        mVideoListFragment?.let { transaction.hide(it) }
+
     }
 
     private fun initTab() {
