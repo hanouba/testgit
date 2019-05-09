@@ -2,15 +2,13 @@ package com.example.kotlin001.ui.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Adapter
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.example.kotlin001.R
 import com.example.kotlin001.base.BaseFragment
 import com.example.kotlin001.mvp.contract.VideoListContract
 import com.example.kotlin001.mvp.model.TestBean
-import com.example.kotlin001.mvp.model.VideListBean
 import com.example.kotlin001.mvp.presenter.VideoListPresenter
-import com.example.kotlin001.ui.adapter.Video2ListAdapter
 import com.example.kotlin001.ui.adapter.VideoListAdapter
 import kotlinx.android.synthetic.main.fragment_video_list.*
 
@@ -22,8 +20,6 @@ class VideoListFragment : BaseFragment(),VideoListContract.View {
 
 
 
-
-
     private var mTitle: String? = ""
 
 
@@ -31,7 +27,7 @@ class VideoListFragment : BaseFragment(),VideoListContract.View {
         VideoListPresenter()
     }
 
-    private var videoAdapter : Video2ListAdapter? = null;
+    private var videoAdapter : VideoListAdapter? = null;
 
 
     companion object {
@@ -72,7 +68,15 @@ class VideoListFragment : BaseFragment(),VideoListContract.View {
     override fun setVideoList(videoListData: TestBean) {
         var rows = videoListData.rows?.rows
         LogUtils.d("Video2ListAdapter-",rows?.size)
-        videoAdapter = Video2ListAdapter(context!!,rows!!,R.layout.item_video_list)
+        videoAdapter = VideoListAdapter(context!!,rows!!)
         rcy_video_left.adapter = videoAdapter
+        videoAdapter!!.setOnKotlinItemClickListener(object : VideoListAdapter.IKotlinItemClickListener {
+            override fun onItemClickListener(position: Int) {
+                ToastUtils.showShort("被搭建")
+            }
+
+        })
     }
+
+
 }
