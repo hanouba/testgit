@@ -34,5 +34,5 @@ interface ApiService {
     fun login(@Query("username")name: String,@Query("password")pwd: String,@Query("mac")mac: String):Observable<LoginBean>
     /*获取资源树*/
     @POST("resource/listPage?")
-    fun getVideoTree(@Query("pageNumber")pageNumber: String,@Query("pageSize")pageSize: String,@Query("")name: String):Observable<TestBean>
+    fun getVideoTree(@Query("pageNumber")pageNumber: String,@Query("pageSize")pageSize: String,@Query("name")name: String):Observable<TestBean>
 }

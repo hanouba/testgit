@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.example.kotlin001.R
+import com.example.kotlin001.api.UrlConstant
 import com.example.kotlin001.base.BaseFragment
 import com.example.kotlin001.mvp.contract.VideoListContract
 import com.example.kotlin001.mvp.model.TestBean
@@ -72,10 +73,25 @@ class VideoListFragment : BaseFragment(),VideoListContract.View {
         rcy_video_left.adapter = videoAdapter
         videoAdapter!!.setOnKotlinItemClickListener(object : VideoListAdapter.IKotlinItemClickListener {
             override fun onItemClickListener(position: Int) {
-                ToastUtils.showShort("被搭建")
+                ToastUtils.showShort("被搭建"+ rows[position].name)
+                var resid = rows[position].id
+                openNextVideoListFragment(resid)
             }
 
         })
+    }
+
+    private fun openNextVideoListFragment(resid: String?) {
+        val bundle = Bundle()
+        bundle.putString(UrlConstant.VIDEO_RESID,resid)
+        var nextVideoFragmnet = NextVideoListFragment()
+          nextVideoFragmnet.arguments = bundle
+        val beginTransaction = fragmentManager?.beginTransaction()
+        nextVideoFragmnet?.let {
+            beginTransaction?.replace(R.id.fl_video_right, it) }
+
+        beginTransaction?.commitAllowingStateLoss()
+
     }
 
 
